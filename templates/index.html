@@ -7,39 +7,25 @@
 </head>
 <body>
 
-  <div id="timer" style="
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #0078d4;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    user-select: none;
-    z-index: 1000;
-  ">
-    Time: 0.0s
-  </div>
+  <div id="timer" class="timer">Time: 0.0s</div>
 
   <div class="user-greeting">
     <div id="birdIcon" class="bird-icon">🐦</div>
     <div>{{ user_email }}</div>
   </div>
-  <h2>Match each baby quail to the adult quail</h2>
-  <p>Choose the letter (A–F) for the adult you think matches each chick. Your time will be recorded.</p>
+
+  <h2>Match Each Baby Quail to Its Adult</h2>
+  <p>Select the letter (A–F) that corresponds to the adult quail you think matches each chick.</p>
+  <p>Your time will be tracked—try to be both fast and accurate.</p>
 
   <form id="quizForm" method="post" action="{{ url_for('submit') }}">
-    <div class="grid">
 
+    <div class="image-grid">
       {% for idx, baby in enumerate(babies, start=1) %}
-      <div class="baby">
+      <div class="image-card baby">
         <a href="{{ url_for('static', filename=baby) }}" target="_blank" rel="noopener noreferrer">
-          <img class="preview" src="{{ url_for('static', filename=baby) }}" alt="Baby {{ idx }}" />
+          <img src="{{ url_for('static', filename=baby) }}" alt="Baby {{ idx }}" />
         </a>
-        <label for="answer_{{ idx }}">Baby {{ idx }}</label>
         <select name="answer_{{ idx }}" id="answer_{{ idx }}" required>
           <option value="" disabled selected>Select adult</option>
           {% for a_idx in range(1, num + 1) %}
@@ -48,32 +34,36 @@
         </select>
       </div>
       {% endfor %}
-
     </div>
 
-<div class="adults-section">
-  <h2>Adult Quails</h2>
-  <div class="grid adults">
-    {% for a_idx, adult in enumerate(adults, start=1) %}
-      <div class="adult">
-        <img class="preview" src="{{ url_for('static', filename=adult) }}" alt="Adult {{ a_idx }}" />
-        <label>{{ chr(64 + a_idx) }}</label> <!-- This gives A, B, C... -->
+    <div class="adults-section">
+      <h2>Adult Quails</h2>
+      <div class="image-grid adults">
+        {% for a_idx, adult in enumerate(adults, start=1) %}
+        <div class="image-card adult">
+          <a href="{{ url_for('static', filename=adult) }}" target="_blank" rel="noopener noreferrer">
+            <img src="{{ url_for('static', filename=adult) }}" alt="Adult {{ a_idx }}" />
+          </a>
+          <label>{{ chr(64 + a_idx) }}</label>
+        </div>
+        {% endfor %}
       </div>
-    {% endfor %}
-  </div>
-</div>
+    </div>
 
     <input type="hidden" name="time_seconds" id="time_seconds" value="0" />
 
     <div class="submit-row">
+      <br>
       <button type="submit">Submit answers</button>
     </div>
+
   </form>
 
 <script>
   let startTs = null;
   let timerInterval = null;
   const timerEl = document.getElementById('timer');
+  const maxTime = 60; // seconds
 
   function startTimer() {
     if (!startTs) {
@@ -82,6 +72,11 @@
       timerInterval = setInterval(() => {
         const elapsed = (Date.now() - startTs) / 1000;
         timerEl.textContent = `Time: ${elapsed.toFixed(1)}s`;
+
+        let intensity = Math.min(elapsed / maxTime, 1);
+        // Interpolate from light red (e.g. rgb(255, 153, 153)) to bright red (rgb(255, 0, 0))
+        let greenBlueValue = Math.floor(153 * (1 - intensity));
+        timerEl.style.backgroundColor = `rgb(255, ${greenBlueValue}, ${greenBlueValue})`;
       }, 100);
     }
   }
