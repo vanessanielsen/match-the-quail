@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Quiz Results</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+  <div class="result-container">
+    {% set percentage = (correct / total) * 100 %}
+    {% if percentage >= 80 %}
+      <div class="emoji">😄</div>
+    {% elif percentage >= 50 %}
+      <div class="emoji">😐</div>
+    {% else %}
+      <div class="emoji">😞</div>
+    {% endif %}
+
+    <div class="score">Score: {{ correct }} / {{ total }}</div>
+    <div class="time">Time taken: {{ '%.2f'|format(time_seconds) }} seconds</div>
+    <button onclick="window.location.href='{{ url_for('index') }}'">Try Again</button>
+  </div>
+</body>
+</html>

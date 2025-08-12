@@ -1,0 +1,219 @@
+/* === Body & Layout === */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #f9fafb;
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Timer (top-right) */
+.timer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Form container styling */
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Grid layout for baby quail (3 columns, 2 rows) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Vertical stack for each baby image + controls */
+.baby {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Label styling, centered text */
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* === Images styling === */
+/* Baby and adult images with rounded corners, shadow and pointer cursor */
+img.preview, .adults img {
+  width: 180px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* Hover scale effect for images */
+img.preview:hover, .adults img:hover {
+  transform: scale(1.05);
+}
+
+/* Border around adult images */
+.adults img {
+  border: 1px solid #ccc;
+}
+
+/* Adults container: grid with 6 columns for symmetrical layout */
+.adults {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
+  justify-items: center;
+  margin-top: 30px;
+}
+
+/* === Buttons styling (merged) === */
+button {
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  padding: 12px 32px;  /* consistent padding */
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+button:hover {
+  background-color: #005a9e;
+}
+
+/* === Dropdown/select styling === */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 180px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 12px; /* spacing below */
+}
+
+/* Focus state for selects */
+select:focus {
+  border-color: #0078d4;
+  box-shadow: 0 0 5px rgba(0,120,212,0.5);
+  outline: none;
+}
+
+/* === Submit button container spacing === */
+.submit-row {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* === User greeting styling === */
+.user-greeting {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Colored bird icon next to greeting */
+.bird-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--bird-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  user-select: none;
+  font-family: monospace;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* === Results page container === */
+.result-container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Large emoji feedback */
+.emoji {
+  font-size: 5rem;
+  margin-bottom: 20px;
+}
+
+/* Score text styling */
+.score {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Time taken text */
+.time {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+/* Adult image grid */
+.adults {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.adult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.adult img {
+  width: 180px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.adult img:hover {
+  transform: scale(1.05);
+}
+
+.adult label {
+  font-weight: 600;
+  display: block;
+  margin-top: 8px;
+}
