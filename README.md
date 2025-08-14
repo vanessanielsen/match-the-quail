@@ -15,7 +15,8 @@ Flask app for a quail image matching quiz. Displays baby and adult quail images 
 
 1. Clone the repo  
 2. Set required environment variables:  
-   - `CORRECT_MAP` (JSON string mapping baby indexes to adult indexes)  
+   - `CORRECT_MAP` (JSON string mapping baby indexes to adult indexes)
+   - `GOOGLE_CLOUD_PROJECT` (Google Cloud project name)
    - `BQ_DATASET` (BigQuery dataset name)  
    - `BQ_TABLE` (BigQuery table name)  
 3. Install dependencies:  
