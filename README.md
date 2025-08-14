@@ -14,11 +14,20 @@ Flask app for a quail image matching quiz. Displays baby and adult quail images 
 ## Setup
 
 1. Clone the repo  
-2. Set required environment variables:  
+2. Ensure the Google Cloud SDK is installed and initialized:  
+   ```bash
+   gcloud init
+   gcloud auth login
+   gcloud config set project YOUR_PROJECT_ID
+3. Make sure app.yaml exists in the project root with the correct runtime and entrypoint.
+4. Set environment variables in app.yaml or in Cloud Console:
    - `CORRECT_MAP` (JSON string mapping baby indexes to adult indexes)
    - `GOOGLE_CLOUD_PROJECT` (Google Cloud project name)
    - `BQ_DATASET` (BigQuery dataset name)  
    - `BQ_TABLE` (BigQuery table name)  
-3. Install dependencies:  
+5. Deploy the app:
    ```bash
-   pip install -r requirements.txt
+   gcloud app deploy
+6. Open the app in your browser:
+   ```bash
+   gcloud app browse
